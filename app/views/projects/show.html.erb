@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-<%= render @project %>
+<h1 class="text-decoration-underline"><%= @project.title %></h1>
 
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete %>
+<strong>Description:</strong>
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <%= @project.description %>
 </div>
+
+<%= link_to 'Edit', edit_project_path(@project), class: "btn btn-success" %> |
+<%= link_to 'Back', projects_path, class: "btn btn-secondary" %>

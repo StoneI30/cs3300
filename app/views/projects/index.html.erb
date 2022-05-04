@@ -1,14 +1,29 @@
-<p style="color: green"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <h1>Projects</h1>
+<% if @projects.blank? %>
+  <h3> There are no projects in our system currently. Sign up or log in to create one! </h3>
+<% else %>
+  <div class="container-fluid mb-4">
+    <div class="row">
+      <% @projects.each do |project| %>
+        <div class="col-md-6 col-lg-4">
+          <div class="card my-3 shadow">
+            <div class="card-body">
+              <h4 class="card-title"><%=project.title%></h4>
+              <p class="card-text"><%=project.description%></p>
+              <%= link_to 'Show', project, class:"btn btn-info" %>
+              <%= link_to 'Edit', edit_project_path(project), class:"btn btn-success"%>
+              <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New project", new_project_path %>
+<br>
+
+<%= link_to 'New Project', new_project_path, class: "btn btn-primary" %>
